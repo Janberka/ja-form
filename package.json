@@ -1,6 +1,6 @@
 {
   "name": "ja-form",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Easy react forms",
   "main": "build/index.js",
   "repository": {
@@ -27,6 +27,7 @@
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "webpack-cli": "^3.0.4"
   }
