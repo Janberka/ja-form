@@ -1,16 +1,31 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 
-const Form = props => {
+interface FormPropsInterface {
+  action: any;
+  children: any;
+  onSubmit?: any;
+  done?: any;
+}
+
+const getData = (form: HTMLFormElement) => {
+  const formData = new FormData(form);
+  return Array.from(formData.entries());
+};
+
+const Form = (props: FormPropsInterface) => {
   const { action, children, onSubmit, done } = props;
-
   const [result, setResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const reset = (e?: any) => {
+    e && e.preventDefault();
+    formRef.current.reset();
+  };
+
   const submit = async () => {
     try {
-      const formData = new FormData(formRef.current);
-      const data = Object.fromEntries(formData);
+      const data = getData(formRef.current);
 
       setLoading(true);
       setError(false);
@@ -28,18 +43,13 @@ const Form = props => {
     done && done();
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = (e?: any) => {
+    e && e.preventDefault();
     submit();
     return false;
   };
 
-  const reset = e => {
-    e && e.preventDefault();
-    formRef.current.reset();
-  };
-
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement>(null!);
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
@@ -48,7 +58,7 @@ const Form = props => {
         submit: handleSubmit,
         result,
         error,
-        reset
+        reset,
       })}
     </form>
   );
