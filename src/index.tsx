@@ -9,7 +9,7 @@ interface FormPropsInterface {
 
 const getData = (form: HTMLFormElement) => {
   const formData = new FormData(form);
-  return Array.from(formData.entries());
+  return Object.fromEntries(formData.entries());
 };
 
 const Form = (props: FormPropsInterface) => {
