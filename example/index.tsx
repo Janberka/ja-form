@@ -15,8 +15,9 @@ const App = () => {
 
   return (
     <div>
-      <Form action={action}>
-        {({error, loading, result, submit}) => (
+      <Form
+        action={action}
+        render={({error, loading, result, submit}) => (
           <>
             <div>{loading && "..."}</div>
             {error}
@@ -25,7 +26,7 @@ const App = () => {
             <button onClick={submit}>s</button>
           </>
         )}
-      </Form>
+      />
     </div>
   );
 };

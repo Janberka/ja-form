@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 
 interface FormPropsInterface {
   action: any;
-  children: any;
+  render: any;
   onSubmit?: any;
   done?: any;
 }
@@ -13,7 +13,7 @@ const getData = (form: HTMLFormElement) => {
 };
 
 const Form = (props: FormPropsInterface) => {
-  const { action, children, onSubmit, done } = props;
+  const { action, render, onSubmit, done } = props;
   const [result, setResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -53,7 +53,7 @@ const Form = (props: FormPropsInterface) => {
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
-      {children({
+      {render({
         loading,
         submit: handleSubmit,
         result,

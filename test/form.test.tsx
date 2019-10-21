@@ -10,9 +10,8 @@ describe('it', () => {
         action={async (data: any) => {
           data;
         }}
-      >
-        {({ loading }: { loading: boolean }) => <>{loading && '...'}</>}
-      </Form>,
+        render={({ loading }: { loading: boolean }) => <>{loading && '...'}</>}
+      />,
       div
     );
     ReactDOM.unmountComponentAtNode(div);
